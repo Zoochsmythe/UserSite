@@ -47,16 +47,16 @@
           <input type="text" class="form-control" name="city">
           </div>
           <div class="form-group">
-          <label for="city">City:</label>
-          <input type="text" class="form-control" name="city">
-          </div>
-          <div class="form-group">
           <label for="state">State</label>
-          <input type="text" placeholder="UT" class="form-control" name="screenSize">
+          <input type="text" placeholder="UT" class="form-control" name="state">
           </div>
           <div class="form-group">
-          <label for="Brand">Brand:</label>
-          <input type="text" class="form-control" name="brand">
+          <label for="city">Zip:</label>
+          <input type="number" class="form-control" name="zip">
+          </div>
+          <div class="form-group">
+          <label for="phone">Phone:</label>
+          <input type="tel" class="form-control" name="phone">
           </div>
           <div class="text-center">
           <input type="submit" value="Submit" name="update">
@@ -68,9 +68,29 @@
     <?php
       if(isset($_POST['update']))
       {
-        var_dump($_POST);
-        $name = ($_POST['firstname'] . $_POST['lastname']);
+        $name = ($_POST['firstname'] . ' ' . $_POST['lastname']);
+        $email = ($_POST['email']);
+        $addr = ($_POST['addr'] . ', ' . $_POST['city'] . ' ' . $_POST['state'] . ' ' . $_POST['zip']);
+        $phone = ($_POST['phone']);
         echo $name;
+        echo $phone;
+        echo $addr;
+
+        $c_name = mysqli_real_escape_string($link,$name);
+        $c_email = mysqli_real_escape_string($link,$email);
+        $c_addr = mysqli_real_escape_string($link,$addr);
+        $c_phone = mysqli_real_escape_string($link,$phone);
+        $customerID = 1;
+
+        echo $c_name;
+
+        $stmt = $link->prepare("INSERT INTO Customer (customerID, name, phone_number, shipping_address, email_address) VALUES (?,?,?,?,?)");
+
+        $stmt->bind_param("issss", $customerID, $c_name, $c_phone, $c_addr, $c_email);
+        $stmt->execute();
+
+        header('location: register.php');
+
       }
 
       function test_input($data) {

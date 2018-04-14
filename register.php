@@ -28,7 +28,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   {
     $insertquery = "INSERT INTO customerlogin (`username`, `password`) VALUES ('$myusername', '$pwd1')";
     mysqli_query($link, $insertquery);
-    header('location: customerinfo.php');
+    header('location: Index.php');
   }
 }
 ?>

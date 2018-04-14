@@ -1,3 +1,7 @@
+<?php 
+  include("info.php");
+  session_start();
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -41,6 +45,45 @@
       </div>
     </nav>
     <div class="jumbotron"><h4 class="text-center">Welcome to Hi-Tech Communications!</h4></div>
+    <div>
+    <table class="table">
+    <tr> 
+        <th scope="col">Serial Number</th> 
+        <th scope="col">Phone Model</th> 
+        <th scope="col">Price</th> 
+        <th scope="col">RAM</th>
+        <th scope="col">CPU</th> 
+        <th scope="col">Condition</th> 
+        <th scope="col">Screen Size</th> 
+        <th scope="col">Brand</th>
+        <th scope="col">Action</th>   
+    </tr> 
+    <?php 
+      
+      $sql="SELECT * FROM Phones ORDER BY phone_model ASC";  
+      $query = mysqli_query($link, $sql);
+        
+      while ($row=mysqli_fetch_array($query)) { 
+            
+    ?> 
+          <tr> 
+              <td><?php echo $row['serial_numb'] ?></td> 
+              <td><?php echo $row['phone_model'] ?></td> 
+              <td><?php echo $row['price'] ?>$</td>
+              <td><?php echo $row['RAM'] ?></td> 
+              <td><?php echo $row['CPU'] ?></td> 
+              <td><?php echo $row['conditions'] ?></td>  
+              <td><?php echo $row['screen_size'] ?></td> 
+              <td><?php echo $row['brand'] ?></td> 
+              <td><a href="cart.php?serial_numb=<?php echo $row['serial_numb']?>&phone_model=<?php echo $row['phone_model'] ?>&price=<?php echo $row['price'] ?>">Add to cart</a></td> 
+          </tr> 
+    <?php 
+            
+      } 
+
+    ?>
+    </table>
+    </div>
     
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

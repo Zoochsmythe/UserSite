@@ -77,6 +77,18 @@ CREATE TABLE Admin (
 	password varchar (50) NOT NULL
 );
 
+CREATE TABLE customerlogin (
+	username varchar (50) NOT NULL,
+	password varchar (50) NOT NULL
+);
+
+CREATE TABLE cart (
+	username varchar (50) NOT NULL,
+	serial_numb varchar (50) NOT NULL ,
+	phone_model varchar (50) NOT NULL ,
+	price int NULL
+);
+
 insert into Customer values(18210,'John Smith','702-533-1111', '123 Mocking Bird Lane, Provo UT 84606', 'abc@yahoo.com');
 insert into Customer values(18211,'Walter White','929-456-9865', '123 Mocking Bird Lane, Provo UT 84606', '123@yahoo.com');
 insert into Customer values(18212,'Mandy Price','929-343-4323', '123 Mocking Bird Lane, Provo UT 84606', 'cat@yahoo.com');
