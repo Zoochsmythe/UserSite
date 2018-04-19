@@ -82,6 +82,11 @@ CREATE TABLE customerlogin (
 	password varchar (50) NOT NULL
 );
 
+CREATE TABLE dbAdmin (
+	username varchar (50) NOT NULL,
+	password varchar (50) NOT NULL
+);
+
 CREATE TABLE cart (
 	username varchar (50) NOT NULL,
 	serial_numb varchar (50) NOT NULL ,
